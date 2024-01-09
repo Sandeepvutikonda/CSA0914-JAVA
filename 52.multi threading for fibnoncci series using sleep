@@ -1,0 +1,39 @@
+import java.util.*;
+import java.io.*;
+import java.lang.Thread;
+class Fib extends Thread {
+    public void run() {
+        int a = 0, b = 1, c, n;
+        Scanner s = new Scanner(System.in);
+        System.out.println("Enter number of terms:");
+        n = s.nextInt();
+        System.out.println("Fibonacci series:");
+        System.out.println(a);
+        System.out.println(b);
+
+        try {
+            for (int i = 1; i <= n - 2; i++) {
+                c = a + b;
+                a = b;
+                b = c;
+                
+                if (c == 13) {
+                    Thread.sleep(1000); 
+                } else {
+                    System.out.println(c);
+                }
+            }
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        } finally {
+            System.out.println("Thread finished execution");
+        }
+    }
+}
+
+class serie {
+    public static void main(String args[]) {
+        Fib fibThread = new Fib();
+        fibThread.start();
+    }
+}
